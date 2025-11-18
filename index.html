@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eric Zhou | Software Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 24px 55px rgba(15, 23, 42, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, #020617, #020617 40%, #020617) fixed;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background overlay */
+    .bg-anim {
+      position: fixed;
+      inset: -20%;
+      background: radial-gradient(circle at 0% 0%, #0ea5e9 0, transparent 40%),
+        radial-gradient(circle at 100% 0%, #8b5cf6 0, transparent 45%),
+        radial-gradient(circle at 50% 100%, #22c55e 0, transparent 40%);
+      opacity: 0.18;
+      filter: blur(40px);
+      z-index: -2;
+      animation: bg-pan 22s infinite alternate ease-in-out;
+    }
+
+    @keyframes bg-pan {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(-4%, 2%, 0) scale(1.02);
+      }
+      100% {
+        transform: translate3d(4%, -4%, 0) scale(1.05);
+      }
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.4rem 1.8rem 4rem;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.96),
+        rgba(2, 6, 23, 0.78),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.3rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .logo-badge {
+      height: 36px;
+      width: 36px;
+      border-radius: 999px;
+      border: 2px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 0%, #38bdf8, #0f172a);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+      transition: transform 0.5s ease-out, box-shadow 0.5s ease-out;
+    }
+
+    .logo-badge:hover {
+      transform: rotate(-6deg) scale(1.05);
+      box-shadow: 0 0 40px rgba(56, 189, 248, 0.9);
+    }
+
+    .nav-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .nav-title span:first-child {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .nav-title span:last-child {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.3rem;
+      font-size: 0.88rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.18s ease-out;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      inset-inline: 18%;
+      bottom: 0.2rem;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #38bdf8, #a855f7);
+      opacity: 0;
+      transform: scaleX(0.4);
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-links a:hover::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
+      gap: 3.2rem;
+      margin-top: 3.2rem;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Floating orb behind hero */
+    .hero-orb {
+      position: absolute;
+      right: -60px;
+      top: -40px;
+      width: 240px;
+      height: 240px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, rgba(56, 189, 248, 0.9), transparent 60%);
+      opacity: 0.45;
+      filter: blur(10px);
+      z-index: -1;
+      animation: float-orb 14s infinite ease-in-out alternate;
+    }
+
+    @keyframes float-orb {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(-18px, 10px, 0) scale(1.05);
+      }
+      100% {
+        transform: translate3d(10px, -12px, 0) scale(1.02);
+      }
+    }
+
+    .hero-main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.7rem;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.24rem 0.7rem 0.24rem 0.25rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.77rem;
+      color: var(--muted);
+      width: fit-content;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(248, 250, 252, 0.28) 40%,
+        transparent 80%
+      );
+      transform: translateX(-120%);
+      animation: pill-shine 5s infinite;
+    }
+
+    @keyframes pill-shine {
+      0% {
+        transform: translateX(-120%);
+      }
+      14% {
+        transform: translateX(120%);
+      }
+      100% {
+        transform: translateX(120%);
+      }
+    }
+
+    .pill-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #22c55e, #166534);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 4.4vw, 3rem);
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 38rem;
+      line-height: 1.7;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.3rem;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      padding: 0.32rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.7rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.62rem 1.25rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.18s ease-out;
+      transform-origin: center;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 0 0, #38bdf8, #0ea5e9);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.6);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(56, 189, 248, 0.8);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.7);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-aside {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.22), transparent),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.18), transparent),
+        linear-gradient(to bottom right, #020617, #020617);
+      padding: 1.6rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .chip {
+      font-size: 0.74rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.9);
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1rem 1.05rem;
+      background: rgba(15, 23, 42, 0.96);
+      margin-bottom: 0.9rem;
+      transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.3s ease-out;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 48px rgba(15, 23, 42, 0.95);
+      border-color: rgba(148, 163, 184, 0.95);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .card-meta {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .card-body {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      border: 1px dashed rgba(148, 163, 184, 0.75);
+      color: var(--muted);
+    }
+
+    /* SECTIONS */
+    section {
+      margin-top: 4.1rem;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-heading {
+      font-size: 1.5rem;
+      margin-bottom: 1.6rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-heading::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.45rem;
+      width: 74px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #38bdf8, #a855f7);
+      opacity: 0.95;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.8rem;
+    }
+
+    .list-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.98);
+      padding: 1.1rem 1.1rem 1.15rem;
+      transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.3s ease-out;
+    }
+
+    .list-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 42px rgba(15, 23, 42, 0.96);
+      border-color: rgba(148, 163, 184, 0.95);
+    }
+
+    .list-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .list-card .subtitle {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .list-card ul {
+      list-style: none;
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .list-card ul li::before {
+      content: "• ";
+      color: var(--accent);
+    }
+
+    .pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill-soft {
+      border-radius: 999px;
+      font-size: 0.74rem;
+      padding: 0.24rem 0.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--muted);
+    }
+
+    /* CONTACT / FOOTER */
+    .contact-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.16), transparent),
+        rgba(15, 23, 42, 0.98);
+      padding: 1.6rem 1.6rem 1.7rem;
+      display: grid;
+      gap: 1rem;
+      align-items: center;
+      box-shadow: 0 20px 48px rgba(15, 23, 42, 0.9);
+    }
+
+    .contact-main {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-main strong {
+      color: var(--text);
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    .contact-item {
+      padding: 0.45rem 0.75rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .contact-item span {
+      display: block;
+    }
+
+    .contact-item span.label {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    .contact-item span.value {
+      font-size: 0.84rem;
+    }
+
+    footer {
+      margin-top: 2.6rem;
+      padding-top: 1.3rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.28);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    /* REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px) scale(0.98);
+      transition:
+        opacity 0.7s ease-out,
+        transform 0.7s ease-out,
+        box-shadow 0.4s ease-out,
+        border-color 0.3s ease-out;
+      transition-delay: var(--delay, 0s);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.6rem;
+      }
+      .hero-aside {
+        order: -1;
+      }
+      .hero-orb {
+        right: -40px;
+        top: -30px;
+        width: 200px;
+        height: 200px;
+      }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding-inline: 1.3rem;
+      }
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+      .nav {
+        padding-inline: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-anim"></div>
+  <div class="noise"></div>
+
+  <header>
+    <nav class="nav reveal" style="--delay: 0.05s;">
+      <div class="nav-left">
+        <div class="logo-badge">EZ</div>
+        <div class="nav-title">
+          <span>Eric Zhou</span>
+          <span>Software Engineering · UNSW</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-orb"></div>
+
+      <div class="hero-main reveal" style="--delay: 0.12s;">
+        <div class="hero-pill">
+          <div class="pill-dot"></div>
+          <span>Available for internships & new opportunities</span>
+        </div>
+        <h1>
+          Building <span>software & robots</span><br />
+          that actually ship, not just vibe.
+        </h1>
+        <p class="hero-sub">
+          Software engineering student at UNSW with a foot in robotics,
+          web dev and competitive golf. I like turning messy ideas into
+          clean systems – from autonomous humanoid behaviours to real-time
+          multiplayer apps.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag">Software Engineering (Honours) @ UNSW</span>
+          <span class="hero-tag">rUNSWift Behaviours Lead</span>
+          <span class="hero-tag">VP External · UNSW Social Golf Society</span>
+          <span class="hero-tag">Student Ambassador · UNSW Engineering</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            <span>Get in touch</span>
+            <span>➜</span>
+          </a>
+          <a href="#experience" class="btn btn-ghost">View experience</a>
+        </div>
+      </div>
+
+      <aside class="hero-aside reveal" style="--delay: 0.22s;">
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">ROS2</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Git</span>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Team Lead (Behaviours) · rUNSWift</div>
+            <div class="card-meta">2025 – Present</div>
+          </div>
+          <div class="card-body">
+            Leading the behaviours stack for UNSW's autonomous robot soccer
+            team at RoboCup – designing tactics, decision-making and robot
+            coordination on NAO humanoids.
+            <div class="stat-row">
+              <span class="stat-pill">Humanoid robotics</span>
+              <span class="stat-pill">Competition-driven dev</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Vice President External · UNSW GolfSoc</div>
+            <div class="card-meta">2025 – Present</div>
+          </div>
+          <div class="card-body">
+            Running industry partnerships and events for a growing student
+            golf community – mixing logistics, sponsorships and a lot of
+            range balls.
+            <div class="stat-row">
+              <span class="stat-pill">Community building</span>
+              <span class="stat-pill">Event management</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT / EDUCATION -->
+    <section id="about" class="reveal" style="--delay: 0.06s;">
+      <p class="section-title">About</p>
+      <h2 class="section-heading">A quick snapshot</h2>
+      <div class="grid-2">
+        <div class="list-card reveal" style="--delay: 0.14s;">
+          <h3>Who I am</h3>
+          <p class="subtitle">
+            Software engineer in training, robotics enjoyer, and gold
+            medal-winning golfer.
+          </p>
+          <ul>
+            <li>
+              Currently studying a Bachelor of Engineering (Honours)
+              (Software) at the University of New South Wales.
+            </li>
+            <li>
+              Comfortable jumping between low-level robotics work, backend
+              APIs and front-end UX.
+            </li>
+            <li>
+              Strong communicator with leadership experience across clubs
+              and competitions.
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-card reveal" style="--delay: 0.22s;">
+          <h3>Education</h3>
+          <p class="subtitle">The academic side of the story.</p>
+          <ul>
+            <li>
+              <strong>UNSW</strong> – Bachelor of Engineering (Honours)
+              (Software), 2023 – Present
+            </li>
+            <li><strong>Knox Grammar School</strong> – 2021 – 2022</li>
+            <li><strong>Sydney Grammar School</strong> – 2013 – 2020</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="reveal" style="--delay: 0.06s;">
+      <p class="section-title">Experience</p>
+      <h2 class="section-heading">What I’ve been up to</h2>
+      <div class="grid-2">
+        <div class="list-card reveal" style="--delay: 0.14s%;">
+          <h3>Team Lead (Behaviours) – rUNSWift</h3>
+          <p class="subtitle">
+            2025 – Present · UNSW autonomous robotics team (RoboCup)
+          </p>
+          <ul>
+            <li>
+              Leading design and implementation of behaviours and tactics
+              for humanoid robot soccer.
+            </li>
+            <li>
+              Working with ROS2-based systems and real-time decision-making
+              for multi-robot teams.
+            </li>
+            <li>
+              Collaborating with a multidisciplinary team across vision,
+              localisation and control.
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-card reveal" style="--delay: 0.22s;">
+          <h3>Vice President External – UNSW Social Golf Society</h3>
+          <p class="subtitle">2025 – Present</p>
+          <ul>
+            <li>
+              Coordinating partnerships, sponsors and external relationships
+              for GolfSoc.
+            </li>
+            <li>
+              Planning and executing events for uni students with a focus on
+              accessibility and vibes.
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-card reveal" style="--delay: 0.3s;">
+          <h3>Student Ambassador – UNSW Engineering</h3>
+          <p class="subtitle">2025 – Present</p>
+          <ul>
+            <li>
+              Representing UNSW Engineering at outreach and recruitment
+              events.
+            </li>
+            <li>
+              Communicating technical concepts to high school students and
+              prospective engineers.
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-card reveal" style="--delay: 0.38s;">
+          <h3>IT Subcommittee Member – UNSW Social Soccer Society</h3>
+          <p class="subtitle">2023 – Present</p>
+          <ul>
+            <li>
+              Supporting the technical stack for registrations, events and
+              communication.
+            </li>
+            <li>
+              Helping grow and maintain a community around casual and
+              competitive football.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal" style="--delay: 0.06s;">
+      <p class="section-title">Projects</p>
+      <h2 class="section-heading">Some things I’ve built</h2>
+      <div class="grid-2">
+        <div class="list-card reveal" style="--delay: 0.14s;">
+          <h3>Multiplayer Quiz App</h3>
+          <p class="subtitle">Kahoot-style real-time quiz platform</p>
+          <ul>
+            <li>
+              Built a live quiz system replicating core Kahoot features with
+              TypeScript and Node.js.
+            </li>
+            <li>
+              Focused on real-time updates, lobby management and smooth UX
+              for players &amp; hosts.
+            </li>
+          </ul>
+          <div class="pills-row">
+            <span class="pill-soft">TypeScript</span>
+            <span class="pill-soft">Node.js</span>
+            <span class="pill-soft">WebSockets</span>
+          </div>
+        </div>
+
+        <div class="list-card reveal" style="--delay: 0.22s;">
+          <h3>Anti-Cheat Research</h3>
+          <p class="subtitle">
+            Investigating vulnerabilities via automated aiming in a legacy
+            multiplayer game.
+          </p>
+          <ul>
+            <li>
+              Implemented an automated aiming system to explore how cheats
+              exploit older engines.
+            </li>
+            <li>
+              Analysed implications for modern anti-cheat strategies and
+              fair play.
+            </li>
+          </ul>
+          <div class="pills-row">
+            <span class="pill-soft">Python</span>
+            <span class="pill-soft">Computer Vision</span>
+            <span class="pill-soft">Game Security</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS / AWARDS -->
+    <section id="skills" class="reveal" style="--delay: 0.06s;">
+      <p class="section-title">Skills &amp; Awards</p>
+      <h2 class="section-heading">What I bring to the table</h2>
+      <div class="grid-2">
+        <div class="list-card reveal" style="--delay: 0.14s;">
+          <h3>Technical Skills</h3>
+          <ul>
+            <li>
+              <strong>Languages:</strong> Python, JavaScript, TypeScript, C,
+              Java
+            </li>
+            <li>
+              <strong>Frameworks &amp; Tools:</strong> ROS2, Git, PostgreSQL,
+              SQL, Express
+            </li>
+            <li>
+              <strong>Other:</strong> Team leadership, project management,
+              bilingual communication, technical writing.
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-card reveal" style="--delay: 0.22s;">
+          <h3>Awards</h3>
+          <ul>
+            <li>
+              2024 – Gold Medal (Individual), UniGames Nationals Golf
+            </li>
+            <li>
+              2023 – Gold Medal (Team), UniGames Nationals Golf
+            </li>
+            <li>2019 – Chinese Language Prize, Sydney Grammar School</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal" style="--delay: 0.06s;">
+      <p class="section-title">Contact</p>
+      <h2 class="section-heading">Let’s chat</h2>
+      <div class="contact-card reveal" style="--delay: 0.16s;">
+        <div class="contact-main">
+          <p>
+            If you’re looking for someone who can jump between
+            <strong>robots, code and community</strong> – or you just want to
+            talk golf, I’m always keen to connect.
+          </p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="label">Email</span>
+            <span class="value">ezhou187@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="label">Location</span>
+            <span class="value">Sydney, NSW, Australia</span>
+          </div>
+        </div>
+        <div class="hero-actions" style="margin-top: 0.2rem;">
+          <a href="mailto:ezhou187@gmail.com" class="btn btn-primary">
+            Email me
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="reveal" style="--delay: 0.06s;">
+      <span>© <span id="year"></span> Eric Zhou. All rights reserved.</span>
+      <span>Built with HTML &amp; a mildly concerning love for clean layouts.</span>
+    </footer>
+  </main>
+
+  <script>
+    // keep year correct
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // scroll reveal
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
+
