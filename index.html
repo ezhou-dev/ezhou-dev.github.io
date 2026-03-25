@@ -64,10 +64,9 @@
         radial-gradient(ellipse 70% 50% at 20% 10%, rgba(56,189,248,0.08) 0%, transparent 70%),
         radial-gradient(ellipse 60% 60% at 80% 0%,  rgba(167,139,250,0.10) 0%, transparent 70%),
         radial-gradient(ellipse 50% 60% at 50% 90%, rgba(56,189,248,0.05) 0%, transparent 70%);
-      animation: bgShift 18s ease-in-out infinite alternate;
+      animation: none;
     }
-    @keyframes bgShift {
-      0%   { transform: translate(0,0) scale(1); }
+    
       50%  { transform: translate(2%,1%) scale(1.03); }
       100% { transform: translate(-1%,2%) scale(1.01); }
     }
@@ -80,27 +79,17 @@
       opacity: 0.18;
       z-index: -1;
       pointer-events: none;
-      animation: float 12s ease-in-out infinite;
+      
     }
-    .orb-1 { width: 400px; height: 400px; background: #38bdf8; top: -100px; left: -100px; animation-duration: 14s; }
-    .orb-2 { width: 500px; height: 500px; background: #a78bfa; top: 20%; right: -150px; animation-duration: 18s; animation-delay: -6s; }
-    .orb-3 { width: 300px; height: 300px; background: #38bdf8; bottom: 10%; left: 20%; animation-duration: 10s; animation-delay: -3s; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) scale(1); }
+    .orb-1 { width: 400px; height: 400px; background: #38bdf8; top: -100px; left: -100px;  }
+    .orb-2 { width: 500px; height: 500px; background: #a78bfa; top: 20%; right: -150px;  animation-delay: -6s; }
+    .orb-3 { width: 300px; height: 300px; background: #38bdf8; bottom: 10%; left: 20%;  animation-delay: -3s; }
+    
       50%       { transform: translateY(-30px) scale(1.05); }
     }
 
     /* ─── Grid lines overlay ────────────────────────────── */
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-image:
-        linear-gradient(rgba(56,189,248,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56,189,248,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
+    .grid-bg { display: none; }
 
     /* ─── Navigation ────────────────────────────────────── */
     nav {
@@ -782,10 +771,7 @@
 
 <!-- Background layers -->
 <div class="bg-canvas"></div>
-<div class="grid-bg"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
+
 
 <!-- ─── Navigation ─────────────────────────────────────── -->
 <nav id="nav">
