@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Experience — Eric Zhou</title>
+  <meta name="description" content="Eric Zhou's experience — rUNSWift, UNSW Golf Society, UNSW Engineering Ambassador." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .exp-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2rem 2rem 2rem 2.5rem;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      overflow: hidden;
+    }
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--grad);
+      border-radius: 3px 0 0 3px;
+    }
+    .exp-card:hover {
+      border-color: var(--border-h);
+      transform: translateX(4px);
+      box-shadow: 0 0 40px rgba(56,189,248,0.05);
+    }
+    .exp-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .exp-role {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.01em;
+    }
+    .exp-org {
+      font-size: 0.875rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .exp-date {
+      font-size: 0.775rem;
+      font-weight: 600;
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(56,189,248,0.2);
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .exp-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .exp-desc strong { color: var(--text); font-weight: 600; }
+    .exp-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem;
+    }
+    .exp-bullets li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+    .exp-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+    .exp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: var(--purple-dim);
+      color: var(--purple);
+      border: 1px solid rgba(167,139,250,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─────────────────────────────────────── -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">EZ</a>
+  <div class="nav-links" id="navLinks">
+    <a href="about.html">About</a>
+    <a href="experience.html" class="active">Experience</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-content">
+  <div class="section">
+
+    <div class="section-label reveal">Experience</div>
+    <h1 class="section-title reveal reveal-delay-1">Where I've <span>made an impact</span></h1>
+    <div class="section-divider reveal reveal-delay-2"></div>
+
+    <div class="exp-list">
+
+      <!-- rUNSWift -->
+      <div class="exp-card reveal reveal-delay-1">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Team Lead — Behaviours</div>
+            <div class="exp-org">rUNSWift · UNSW Autonomous Robotics (RoboCup)</div>
+          </div>
+          <div class="exp-date">2025</div>
+        </div>
+        <div class="exp-desc">
+          Leading the Behaviours team for UNSW's humanoid robot soccer team, <strong>five-time RoboCup World Champion</strong>. Responsible for the decision-making and tactical systems that determine how robots act on the field during international competition.
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed and implemented behaviour trees and state machines for humanoid robot soccer roles (attacker, defender, goalie)</li>
+          <li>Built decision-making and tactical behaviour systems in Python and ROS2</li>
+          <li>Implemented real-time multi-agent coordination logic for team strategy</li>
+          <li>Contributed to the codebase used in RoboCup international competition</li>
+        </ul>
+        <div class="exp-pills">
+          <span class="tag tag-blue">Python</span>
+          <span class="tag tag-blue">ROS2</span>
+          <span class="tag tag-blue">C++</span>
+          <span class="exp-badge">🏆 5× World Champions</span>
+        </div>
+      </div>
+
+      <!-- Golf Society -->
+      <div class="exp-card reveal reveal-delay-2">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">President <span style="color:var(--muted);font-weight:400;font-size:0.85rem">(prev. VP External)</span></div>
+            <div class="exp-org">UNSW Social Golf Society</div>
+          </div>
+          <div class="exp-date">2024 – Present</div>
+        </div>
+        <div class="exp-desc">
+          Elected President in 2025 after serving as VP External (2024–25). Oversee all society operations, community building, and external relationships for one of UNSW's most active sports societies.
+        </div>
+        <ul class="exp-bullets">
+          <li>Manage a committee of 10+ members and coordinate regular events and competitions</li>
+          <li>Secured external sponsorships and partnerships to grow the society's reach</li>
+          <li>Manage and grow the society's Discord community of active members</li>
+          <li>Organised inter-university golf events and social outings</li>
+        </ul>
+      </div>
+
+      <!-- Student Ambassador -->
+      <div class="exp-card reveal reveal-delay-3">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Student Ambassador</div>
+            <div class="exp-org">UNSW Engineering Faculty</div>
+          </div>
+          <div class="exp-date">2025 – Present</div>
+        </div>
+        <div class="exp-desc">
+          Represent UNSW Engineering to prospective students, industry partners, and the wider community. Participate in open days, panels, and outreach events to share personal experience and advocate for software engineering as a career path.
+        </div>
+        <ul class="exp-bullets">
+          <li>Represented UNSW Engineering at open days and public outreach events</li>
+          <li>Spoke on panels for prospective engineering students</li>
+          <li>Helped communicate the UNSW Engineering culture and student experience</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ─── Footer ─────────────────────────────────────────── -->
+<footer>
+  <p>Designed &amp; built by <span>Eric Zhou</span> · © 2025</p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

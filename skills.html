@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skills — Eric Zhou</title>
+  <meta name="description" content="Eric Zhou's skills — TypeScript, Python, React, ROS2, Node.js, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .skill-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .skill-group:hover { border-color: var(--border-h); transform: translateY(-3px); }
+    .skill-group-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .skill-group-title.blue   { color: var(--accent); }
+    .skill-group-title.purple { color: var(--purple); }
+    .skill-group-title.green  { color: #4ade80; }
+    .skill-group-title.orange { color: #fb923c; }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    /* Awards section */
+    .awards-section {
+      margin-top: 1rem;
+    }
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .award-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .award-card:hover { border-color: rgba(167,139,250,0.35); transform: translateY(-2px); }
+    .award-emoji { font-size: 1.5rem; flex-shrink: 0; }
+    .award-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .award-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─────────────────────────────────────── -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">EZ</a>
+  <div class="nav-links" id="navLinks">
+    <a href="about.html">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html" class="active">Skills</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-content">
+  <div class="section">
+
+    <div class="section-label reveal">Skills</div>
+    <h1 class="section-title reveal reveal-delay-1">My <span>toolkit</span></h1>
+    <div class="section-divider reveal reveal-delay-2"></div>
+
+    <div class="skills-grid">
+
+      <div class="skill-group reveal reveal-delay-1">
+        <div class="skill-group-title blue">Languages</div>
+        <div class="skill-chips">
+          <span class="chip">TypeScript</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Python</span>
+          <span class="chip">C</span>
+          <span class="chip">Java</span>
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal reveal-delay-2">
+        <div class="skill-group-title purple">Frameworks</div>
+        <div class="skill-chips">
+          <span class="chip purple">Node.js</span>
+          <span class="chip purple">Express</span>
+          <span class="chip purple">React</span>
+          <span class="chip purple">ROS2</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal reveal-delay-3">
+        <div class="skill-group-title green">Tools &amp; Platforms</div>
+        <div class="skill-chips">
+          <span class="chip">Git</span>
+          <span class="chip">Jest</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Supabase</span>
+          <span class="chip">SQL</span>
+          <span class="chip">OpenAPI/Swagger</span>
+          <span class="chip">Jira</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal reveal-delay-4">
+        <div class="skill-group-title orange">Practices</div>
+        <div class="skill-chips">
+          <span class="chip">Agile / Scrum</span>
+          <span class="chip">REST API Design</span>
+          <span class="chip">Technical Documentation</span>
+          <span class="chip">Test-Driven Development</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Awards -->
+    <div class="awards-section">
+      <div class="section-label reveal" style="margin-bottom:1rem;">Awards &amp; Recognition</div>
+      <div class="awards-grid">
+
+        <div class="award-card reveal reveal-delay-1">
+          <span class="award-emoji">🥇</span>
+          <div>
+            <div class="award-title">2024 Gold Medal (Individual)</div>
+            <div class="award-sub">UniGames Nationals Golf</div>
+          </div>
+        </div>
+
+        <div class="award-card reveal reveal-delay-2">
+          <span class="award-emoji">🥇</span>
+          <div>
+            <div class="award-title">2023 Gold Medal (Team)</div>
+            <div class="award-sub">UniGames Nationals Golf</div>
+          </div>
+        </div>
+
+        <div class="award-card reveal reveal-delay-3">
+          <span class="award-emoji">🏅</span>
+          <div>
+            <div class="award-title">2019 Chinese Language Prize</div>
+            <div class="award-sub">Sydney Grammar School</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── Footer ─────────────────────────────────────────── -->
+<footer>
+  <p>Designed &amp; built by <span>Eric Zhou</span> · © 2025</p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

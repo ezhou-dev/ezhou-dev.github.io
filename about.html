@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Eric Zhou</title>
+  <meta name="description" content="About Eric Zhou — Software Engineering student at UNSW, Sydney." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 0.975rem;
+    }
+    .about-text p strong { color: var(--text); font-weight: 600; }
+    .about-text p a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color var(--transition); }
+    .about-text p a:hover { border-color: var(--accent); }
+
+    /* Education */
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .edu-card:hover { border-color: var(--border-h); transform: translateY(-2px); }
+    .edu-logo {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .edu-meta { font-size: 0.825rem; color: var(--muted); }
+
+    /* Awards */
+    .awards-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.5rem;
+    }
+    .awards-block h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 1rem;
+    }
+    .award-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .award-item:last-child { margin-bottom: 0; }
+    .award-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─────────────────────────────────────── -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">EZ</a>
+  <div class="nav-links" id="navLinks">
+    <a href="about.html" class="active">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-content">
+  <div class="section">
+
+    <div class="section-label reveal">About Me</div>
+    <h1 class="section-title reveal reveal-delay-1">Who I am &amp; <span>what I do</span></h1>
+    <div class="section-divider reveal reveal-delay-2"></div>
+
+    <div class="about-grid">
+      <!-- Bio -->
+      <div class="about-text">
+        <p class="reveal reveal-delay-1">
+          Hey, I'm Eric — a <strong>third-year Software Engineering student at UNSW</strong> based in Sydney, NSW. I love building things that are well-engineered, from clean REST APIs to low-level robotics systems.
+        </p>
+        <p class="reveal reveal-delay-2">
+          I currently lead the <strong>Behaviours team for rUNSWift</strong>, UNSW's autonomous soccer robot team and five-time RoboCup World Champion. I design and implement decision-making systems that make humanoid robots play smart, competitive football.
+        </p>
+        <p class="reveal reveal-delay-3">
+          When I'm not writing code, you'll find me on a golf course — I'm the President of the <strong>UNSW Social Golf Society</strong> and a two-time UniGames gold medallist. I'm also a Student Ambassador for UNSW Engineering, helping communicate the school's culture and vision.
+        </p>
+        <p class="reveal reveal-delay-4">
+          I'm actively seeking <strong>software engineering internships</strong> for 2025–2026. I thrive in collaborative, fast-moving teams and care deeply about writing code that actually ships.
+        </p>
+      </div>
+
+      <!-- Education & Awards -->
+      <div>
+        <div class="section-label reveal" style="margin-bottom:1rem;">Education</div>
+
+        <div class="edu-card reveal reveal-delay-1">
+          <div class="edu-logo">🎓 UNSW Sydney</div>
+          <div class="edu-degree">Bachelor of Engineering (Honours) (Software)</div>
+          <div class="edu-meta">2023 – Present · Sydney, NSW</div>
+        </div>
+
+        <div class="edu-card reveal reveal-delay-2">
+          <div class="edu-logo">🏫 Knox Grammar School</div>
+          <div class="edu-degree">High School</div>
+          <div class="edu-meta">2021 – 2022 · Wahroonga, NSW</div>
+        </div>
+
+        <div class="edu-card reveal reveal-delay-3">
+          <div class="edu-logo">🏫 Sydney Grammar School</div>
+          <div class="edu-degree">High School</div>
+          <div class="edu-meta">2013 – 2020 · Sydney, NSW</div>
+        </div>
+
+        <div class="awards-block reveal reveal-delay-4">
+          <h4>🏆 Awards &amp; Recognition</h4>
+          <div class="award-item">
+            <span class="award-icon">🥇</span>
+            <span><strong style="color:var(--text);">2024 Gold Medal (Individual)</strong> — UniGames Nationals Golf</span>
+          </div>
+          <div class="award-item">
+            <span class="award-icon">🥇</span>
+            <span><strong style="color:var(--text);">2023 Gold Medal (Team)</strong> — UniGames Nationals Golf</span>
+          </div>
+          <div class="award-item">
+            <span class="award-icon">🏅</span>
+            <span><strong style="color:var(--text);">2019 Chinese Language Prize</strong> — Sydney Grammar School</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── Footer ─────────────────────────────────────────── -->
+<footer>
+  <p>Designed &amp; built by <span>Eric Zhou</span> · © 2025</p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>
